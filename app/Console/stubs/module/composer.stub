@@ -1,0 +1,21 @@
+{
+    "name": "$VENDOR$/$LOWER_NAME$",
+    "description": "",
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "$MODULE_NAMESPACE$\\$STUDLY_NAME$\\": ""
+        }
+    },
+    "cleanup": [
+        "App\\Composer\\Cleanup::perform",
+        "@composer dumpautoload"
+    ]
+}

@@ -1,0 +1,179 @@
+/**
+ * Concord CRM - https://www.concordcrm.com
+ *
+ * @version   1.3.5
+ *
+ * @link      Releases - https://www.concordcrm.com/releases
+ * @link      Terms Of Service - https://www.concordcrm.com/terms
+ *
+ * @copyright Copyright (c) 2022-2024 KONKORD DIGITAL
+ */
+@layer components {
+  .table-responsive {
+    @apply touch-auto overflow-x-auto;
+  }
+
+  .table-primary {
+    @apply relative w-full min-w-full divide-y divide-neutral-200 dark:divide-neutral-800;
+
+    > thead {
+      > tr {
+        > th {
+          @apply bg-neutral-50 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100;
+        }
+      }
+    }
+
+    &.table-bordered-inner-x {
+      > thead > tr > th,
+      > tbody > tr > td {
+        @apply border-r border-neutral-200 dark:border-neutral-800;
+
+        &:last-child {
+          @apply border-r-0;
+        }
+      }
+    }
+
+    &.table-bordered-inner-y {
+      > tbody > tr > td {
+        @apply border-b border-neutral-200 dark:border-neutral-800;
+      }
+
+      > tbody > tr:last-child td {
+        @apply border-b-0;
+      }
+    }
+
+    &.table-bordered-x {
+      > thead > tr > th:last-child,
+      > tbody > tr > td:last-child {
+        @apply border-r border-neutral-200 dark:border-neutral-800;
+      }
+
+      > thead > tr > th:first-child,
+      > tbody > tr > td:first-child {
+        @apply border-l border-neutral-200 dark:border-neutral-800;
+      }
+    }
+
+    &.table-bordered-y {
+      > thead > tr > th {
+        @apply border-t border-neutral-200 dark:border-neutral-800;
+      }
+
+      > tbody > tr:last-child td {
+        @apply border-b border-neutral-200 dark:border-neutral-800;
+      }
+    }
+
+    > tbody {
+      > tr {
+        > td {
+          @apply bg-white px-5 py-2.5 text-sm text-neutral-700 dark:bg-neutral-900 dark:text-neutral-200;
+
+          &:first-child:has(a) {
+            @apply font-medium;
+          }
+        }
+      }
+    }
+
+    &.table-condensed {
+      > thead > tr > th {
+        @apply px-2 py-2.5;
+      }
+
+      > tbody > tr > td {
+        @apply px-2 py-1;
+      }
+    }
+  }
+
+  .table-sticky-header {
+    @apply max-h-80 overflow-y-auto;
+
+    table:not(.table-bordered-y) > thead > tr > th {
+      @apply border-y border-neutral-200 dark:border-neutral-800;
+    }
+
+    table.table-bordered-y > thead > tr > th {
+      @apply border-b border-neutral-200 dark:border-neutral-800;
+    }
+
+    table > thead > tr > th {
+      @apply sticky top-0 z-10 bg-opacity-75 backdrop-blur-sm backdrop-filter;
+    }
+  }
+
+  .table-sticky-header,
+  .table-responsive {
+    table {
+      > thead > tr {
+        > .table-primary-column {
+          @apply z-30 lg:sticky lg:left-0;
+        }
+
+        > .table-actions-column {
+          @apply z-30 table-fixed lg:sticky lg:right-0;
+        }
+      }
+
+      > tbody > tr,
+      > tfoot > tr {
+        > .table-primary-column {
+          @apply relative lg:sticky lg:left-0;
+        }
+
+        > .table-actions-column {
+          @apply relative table-fixed px-2 lg:sticky lg:right-0;
+        }
+      }
+
+      > tbody,
+      tfoot {
+        > tr {
+          > .table-primary-column {
+            @apply z-10;
+          }
+
+          > .table-actions-column {
+            @apply z-20;
+          }
+        }
+      }
+    }
+  }
+
+  .table-primary > tbody > tr.row-border-left {
+    > td:first-child:after,
+    td:first-child:before {
+      @apply absolute left-0 top-0 h-full w-auto border-l-2 border-transparent content-[''];
+    }
+
+    &.row-border-primary > td:first-child:after,
+    &.row-border-primary td:first-child:before {
+      @apply border-primary-500;
+    }
+
+    &.row-border-warning > td:first-child:after,
+    &.row-border-warning td:first-child:before {
+      @apply border-warning-500;
+    }
+
+    &.row-border-danger > td:first-child:after,
+    &.row-border-danger td:first-child:before {
+      @apply border-danger-500;
+    }
+
+    &.row-border-success > td:first-child:after,
+    &.row-border-success td:first-child:before {
+      @apply border-success-500;
+    }
+
+    &.row-border-info > td:first-child:after,
+    &.row-border-info td:first-child:before {
+      @apply border-info-500;
+    }
+  }
+}

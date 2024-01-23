@@ -1,0 +1,95 @@
+/**
+ * Concord CRM - https://www.concordcrm.com
+ *
+ * @version   1.3.5
+ *
+ * @link      Releases - https://www.concordcrm.com/releases
+ * @link      Terms Of Service - https://www.concordcrm.com/terms
+ *
+ * @copyright Copyright (c) 2022-2024 KONKORD DIGITAL
+ */
+.fc-wrapper {
+  --fc-border-color: rgba(var(--color-neutral-200));
+}
+
+.dark .fc-wrapper {
+  --fc-border-color: rgba(var(--color-neutral-700));
+}
+
+.fc {
+  @apply !rounded-none !border-t !border-neutral-200 bg-white dark:!border-neutral-700 dark:bg-neutral-900;
+}
+
+.fc .fc-toolbar {
+  @apply !mb-0 !border-0 !bg-transparent px-4 py-1 sm:px-5;
+}
+
+.fc .fc-toolbar-title {
+  @apply !text-sm !font-semibold text-neutral-800 dark:text-neutral-200;
+}
+
+.fc .fc-col-header-cell-cushion {
+  @apply !px-2 !py-2.5 !text-sm !font-medium !text-neutral-600 dark:!text-neutral-200;
+}
+
+.fc .fc-timegrid-slot-label {
+  @apply !text-xs !font-medium uppercase !text-neutral-400 dark:!text-neutral-400;
+}
+
+.fc .fc-day.fc-day-today {
+  @apply !bg-white dark:!bg-neutral-800;
+}
+
+.fc .fc-day.fc-day-today .fc-daygrid-day-number {
+  @apply mr-2 mt-1 flex size-6 items-center justify-center rounded-full bg-primary-600 font-semibold !text-white dark:!text-white;
+}
+
+.fc .fc-day .fc-daygrid-day-number {
+  @apply !p-2.5 !text-xs !text-neutral-600 dark:!text-neutral-300;
+}
+
+.fc .fc-day.fc-day-past,
+.fc .fc-day.fc-day-future.fc-day-other {
+  @apply !bg-neutral-50 dark:!bg-neutral-700 dark:!bg-opacity-40;
+}
+
+.fc .fc-daygrid-event {
+  @apply !text-sm;
+}
+
+.fc .fc-daygrid-more-link {
+  @apply !text-sm !text-neutral-600 hover:!text-neutral-800;
+}
+
+.fc
+  .fc-timeGridWeek-view
+  .fc-col-header-cell.fc-day-today
+  .fc-col-header-cell-cushion {
+  @apply !text-primary-700 dark:!text-primary-400;
+}
+
+.fc .fc-dayGridMonth-view .fc-day {
+  @apply !p-1;
+}
+
+.fc .fc-event-main > span {
+  @apply opacity-95;
+}
+
+.fc .fc-daygrid-event,
+.fc-timegrid-event {
+  @apply !rounded !px-1;
+}
+
+.fc .fc-event-main {
+  @apply !truncate;
+}
+
+.fc .fc-event-main:hover {
+  @apply !text-clip;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border-left: 0 !important;
+  border-right: 0 !important;
+}

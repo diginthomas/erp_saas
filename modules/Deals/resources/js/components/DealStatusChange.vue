@@ -1,0 +1,127 @@
+<template>
+  <div v-if="dealStatus === 'open'">
+    <div class="inline-flex">
+      <IButton
+        v-if="dealStatus !== 'won'"
+        v-i-tooltip="$t('deals::deal.actions.mark_as_won')"
+        variant="success"
+        class="mr-1.5 px-5"
+        :loading="requestInProgress['won']"
+        :disabled="requestInProgress['won']"
+        :text="$t('deals::deal.status.won')"
+        @click="changeStatus('won')"
+      />
+
+      <IPopover
+        v-if="dealStatus !== 'lost'"
+        v-model:visible="popoverVisible"
+        shift
+        :title="$t('deals::deal.actions.mark_as_lost')"
+        closeable
+        class="w-80 max-w-xs sm:max-w-sm"
+      >
+        <IButton
+          v-i-tooltip="$t('deals::deal.actions.mark_as_lost')"
+          variant="danger"
+          class="px-5"
+          :text="$t('deals::deal.status.lost')"
+        />
+
+        <template #popper>
+          <div class="flex flex-col p-4">
+            <IFormGroup
+              :label="$t('deals::deal.lost_reasons.lost_reason')"
+              label-for="lost_reason"
+              :optional="!setting('lost_reason_is_required')"
+              :required="setting('lost_reason_is_required')"
+            >
+              <LostReasonField v-model="form.lost_reason" />
+
+              <IFormError :error="form.getError('lost_reason')" />
+            </IFormGroup>
+
+            <IButton
+              variant="danger"
+              block
+              :loading="requestInProgress['lost']"
+              :disabled="requestInProgress['lost']"
+              :text="$t('deals::deal.actions.mark_as_lost')"
+              @click="changeStatus('lost')"
+            />
+          </div>
+        </template>
+      </IPopover>
+    </div>
+  </div>
+
+  <div v-else class="flex items-center">
+    <IBadge size="lg" :variant="dealStatus === 'won' ? 'success' : 'danger'">
+      <Icon
+        v-if="dealStatus === 'won'"
+        icon="CheckBadge"
+        class="mr-1.5 size-4"
+      />
+
+      <Icon v-else-if="dealStatus === 'lost'" icon="X" class="mr-1.5 size-4" />
+
+      {{ $t('deals::deal.status.' + dealStatus) }}
+    </IBadge>
+
+    <IButton
+      class="ml-2 px-5"
+      :disabled="requestInProgress['open']"
+      :loading="requestInProgress['open']"
+      variant="white"
+      :text="$t('deals::deal.reopen')"
+      @click="changeStatus('open')"
+    />
+  </div>
+</template>
+
+<script setup>
+import { reactive, ref } from 'vue'
+
+import { useApp } from '@/Core/composables/useApp'
+import { useForm } from '@/Core/composables/useForm'
+import { useResourceable } from '@/Core/composables/useResourceable'
+import { throwConfetti } from '@/Core/utils'
+
+import LostReasonField from './DealLostReasonField.vue'
+
+const props = defineProps({
+  dealId: { type: Number, required: true },
+  dealStatus: { type: String, required: true },
+})
+
+const emit = defineEmits(['updated'])
+
+const popoverVisible = ref(false)
+
+const { setting } = useApp()
+
+const { form } = useForm({ lost_reason: null }, { resetOnSuccess: true })
+
+const { updateResource } = useResourceable(Innoclapps.resourceName('deals'))
+
+const requestInProgress = reactive({
+  won: false,
+  lost: false,
+  open: false,
+})
+
+async function changeStatus(status) {
+  requestInProgress[status] = true
+
+  try {
+    let updatedDeal = await updateResource(form.fill({ status }), props.dealId)
+
+    if (status === 'won') {
+      throwConfetti()
+    }
+
+    emit('updated', updatedDeal)
+  } finally {
+    requestInProgress[status] = false
+  }
+}
+</script>

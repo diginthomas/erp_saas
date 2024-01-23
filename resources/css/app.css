@@ -1,0 +1,236 @@
+/**
+ * Concord CRM - https://www.concordcrm.com
+ *
+ * @version   1.3.5
+ *
+ * @link      Releases - https://www.concordcrm.com/releases
+ * @link      Terms Of Service - https://www.concordcrm.com/terms
+ *
+ * @copyright Copyright (c) 2022-2024 KONKORD DIGITAL
+ */
+/* https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports */
+@import './variables.css';
+@import './table.css';
+@import './vcalendar.css';
+@import './fullcalendar.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[v-cloak] {
+  display: none !important;
+}
+
+/**
+ If default border color is needed apply the CSS below
+
+ *, :after, :before {
+    border-color: rgb(var(--color-neutral-200));
+}
+*/
+@layer components {
+  .link {
+    @apply text-sm no-underline focus:outline-none;
+
+    &.link-primary {
+      @apply text-primary-600 hover:text-primary-900 dark:text-primary-300 dark:hover:text-primary-400;
+    }
+
+    &.link-neutral {
+      @apply text-neutral-800 hover:text-neutral-500 dark:text-white dark:hover:text-neutral-200;
+    }
+
+    &.link-danger {
+      @apply text-danger-500 hover:text-danger-700;
+    }
+
+    &.link-warning {
+      @apply text-warning-700 hover:text-warning-600;
+    }
+
+    &.link-info {
+      @apply text-info-900 hover:text-info-700;
+    }
+  }
+
+  /* General */
+  .form-input {
+    @apply block w-full rounded-md border-0 px-3 text-sm/6 text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:bg-neutral-200 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:ring-neutral-500 dark:focus:ring-primary-500 dark:disabled:bg-neutral-600;
+
+    &.form-input-sm {
+      @apply py-1;
+    }
+
+    &.form-input-md {
+      @apply py-1.5;
+    }
+
+    &.form-input-lg {
+      @apply py-2;
+    }
+  }
+
+  .form-textarea {
+    @apply block w-full rounded-md border-0 px-3 py-1.5 text-sm/6 text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:bg-neutral-200 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:ring-neutral-500 dark:focus:ring-primary-500 dark:disabled:bg-neutral-600;
+  }
+
+  .form-select {
+    @apply block w-full rounded-md border-0 pl-3 pr-10 text-sm/6 text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:bg-neutral-200 dark:bg-neutral-700 dark:text-white dark:placeholder-neutral-400 dark:ring-neutral-500 dark:focus:ring-primary-500 dark:disabled:bg-neutral-600;
+
+    > option {
+      @apply text-neutral-800 dark:text-white dark:disabled:text-neutral-400;
+    }
+
+    &.form-select-sm {
+      @apply py-1;
+    }
+
+    &.form-select-md {
+      @apply py-1.5;
+    }
+
+    &.form-select-lg {
+      @apply py-2;
+    }
+  }
+
+  .form-radio {
+    @apply size-4 !border border-neutral-300 text-primary-600 focus:ring-primary-500 disabled:opacity-60 dark:border-neutral-400;
+  }
+
+  .form-radio:not(:checked, :disabled) {
+    @apply hover:bg-neutral-100 hover:bg-none dark:bg-neutral-200 dark:hover:bg-neutral-300;
+  }
+
+  .form-check {
+    @apply size-4 rounded !border border-neutral-300 text-primary-600 focus:ring-primary-500 disabled:opacity-60 dark:border-neutral-400;
+  }
+
+  .form-check:not(:checked, :disabled, :indeterminate) {
+    @apply hover:bg-neutral-100 hover:bg-none dark:bg-neutral-200 dark:hover:bg-neutral-300;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply relative inline-flex items-center justify-center rounded-md text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-60;
+
+    &.btn-xs {
+      @apply px-2.5 py-1 text-xs;
+
+      &.btn-icon {
+        @apply p-1;
+      }
+    }
+
+    &.btn-sm {
+      @apply px-3.5 py-1.5 text-[0.8rem];
+
+      &.btn-icon {
+        @apply px-2;
+      }
+    }
+
+    &.btn-md {
+      @apply px-4 py-2;
+
+      &.btn-icon {
+        @apply px-2.5;
+      }
+    }
+
+    &.btn-lg {
+      @apply px-5 py-2.5;
+
+      &.btn-icon {
+        @apply px-3;
+      }
+    }
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-500 focus-visible:outline-primary-600;
+
+    &.active {
+      @apply bg-primary-700 hover:bg-primary-600;
+    }
+  }
+
+  .btn-secondary {
+    @apply bg-primary-100 text-primary-700 hover:bg-primary-200 focus-visible:outline-primary-400;
+
+    &.active {
+      @apply bg-primary-200 text-primary-800 hover:bg-primary-100;
+    }
+  }
+
+  .btn-success {
+    @apply bg-success-500 text-white hover:bg-success-400 focus-visible:outline-success-600;
+
+    &.active {
+      @apply bg-success-700 hover:bg-success-600;
+    }
+  }
+
+  .btn-danger {
+    @apply bg-danger-600 text-white hover:bg-danger-500 focus-visible:outline-danger-500;
+
+    &.active {
+      @apply bg-danger-700 hover:bg-danger-600;
+    }
+  }
+
+  .btn-white {
+    @apply bg-white text-neutral-600 ring-1 ring-inset ring-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 focus-visible:outline-neutral-400 dark:bg-neutral-700 dark:text-neutral-200 dark:ring-neutral-500 dark:hover:bg-neutral-500 dark:hover:text-neutral-100;
+
+    &.active {
+      @apply bg-neutral-100 hover:bg-neutral-50 dark:bg-neutral-800 dark:hover:bg-neutral-600;
+    }
+
+    &:not(.btn-icon) {
+      .icon {
+        @apply text-neutral-500 dark:text-neutral-300;
+      }
+
+      &:hover .icon {
+        @apply text-neutral-700 dark:text-neutral-100;
+      }
+    }
+  }
+}
+
+.flip-list-move {
+  transition: transform 0.6s;
+}
+
+.drag-ghost-rounded {
+  @apply rounded-md border border-dashed border-neutral-400 opacity-60;
+}
+
+.drag-ghost {
+  @apply border border-dashed border-neutral-400 opacity-60;
+}
+
+.mention {
+  @apply rounded-md bg-neutral-100 px-1 py-0.5 text-sm text-neutral-800;
+}
+
+/* z-index fixes */
+
+#_cbhtml #divSnippetList,
+.is-ui #divSnippetList {
+  z-index: 1000;
+}
+
+.dialog {
+  z-index: 1050;
+}
+
+.notification,
+.notifications {
+  z-index: 1200;
+}
+
+.confetti {
+  z-index: 1350;
+}
