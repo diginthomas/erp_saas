@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Modules\Core\Facades\ReCaptcha;
 use Modules\Core\Rules\ValidRecaptchaRule;
+use DB;
 
 class LoginController extends Controller
 {
@@ -60,6 +61,7 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request): void
     {
+       // dd(DB::connection()->getDatabaseName());
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
@@ -75,6 +77,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+       
         $response = redirect()->intended($this->redirectPath());
 
         if (! $request->wantsJson()) {

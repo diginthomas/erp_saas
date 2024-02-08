@@ -42,6 +42,9 @@ return [
     */
 
     'debug' => (bool) env('APP_DEBUG', false),
+    
+    'domain' => env('APP_DOMAIN','localhost'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -189,6 +192,7 @@ return [
 
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        App\Providers\TenancyServiceProvider::class,
 
         /*
         * Bootstrapping service providers.

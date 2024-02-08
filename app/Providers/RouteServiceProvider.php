@@ -40,10 +40,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware([PreventInstallationWhenInstalled::class, 'web'])
-                ->prefix(\DetachedHelper::INSTALL_ROUTE_PREFIX)
-                ->withoutMiddleware([PreventRequestsWhenMigrationNeeded::class, PreventRequestsWhenUpdateNotFinished::class])
-                ->group(base_path('routes/install.php'));
+            // Route::middleware([PreventInstallationWhenInstalled::class, 'web'])
+            //     ->prefix(\DetachedHelper::INSTALL_ROUTE_PREFIX)
+            //     ->withoutMiddleware([PreventRequestsWhenMigrationNeeded::class, PreventRequestsWhenUpdateNotFinished::class])
+            //     ->group(base_path('routes/install.php'));
 
             Route::prefix(\Modules\Core\Application::API_PREFIX)
                 ->middleware('api')
@@ -64,30 +64,30 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-    protected function mapWebRoutes()
-{
-    foreach ($this->centralDomains() as $domain) {
-        Route::middleware('web')
-            ->domain($domain)
-            ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
-    }
-}
+//     protected function mapWebRoutes()
+// {
+//     foreach ($this->centralDomains() as $domain) {
+//         Route::middleware('web')
+//             ->domain($domain)
+//             ->namespace($this->namespace)
+//             ->group(base_path('routes/web.php'));
+//     }
+// }
 
-protected function mapApiRoutes()
-{
-    foreach ($this->centralDomains() as $domain) {
-        Route::prefix('api')
-            ->domain($domain)
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
-    }
-}
+// protected function mapApiRoutes()
+// {
+//     foreach ($this->centralDomains() as $domain) {
+//         Route::prefix('api')
+//             ->domain($domain)
+//             ->middleware('api')
+//             ->namespace($this->namespace)
+//             ->group(base_path('routes/api.php'));
+//     }
+// }
 
-protected function centralDomains(): array
-{
-    return config('tenancy.central_domains');
-}
+// protected function centralDomains(): array
+// {
+//     return config('tenancy.central_domains');
+// }
 
 }

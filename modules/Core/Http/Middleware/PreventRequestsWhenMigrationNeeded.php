@@ -28,7 +28,7 @@ class PreventRequestsWhenMigrationNeeded
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
         if (Innoclapps::requiresMigration()) {
-            return redirect('/migrate');
+            // return redirect('/migrate');
         }
 
         return $next($request);

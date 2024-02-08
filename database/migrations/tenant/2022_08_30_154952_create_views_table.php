@@ -18,8 +18,8 @@ class CreateViewsTable extends Migration
      */
     public function __construct()
     {
-        $this->connection = config('eloquent-viewable.models.view.connection');
-        $this->table = config('eloquent-viewable.models.view.table_name') ?: 'views';
+        // $this->connection = config('eloquent-viewable.models.view.connection');
+        // $this->table = config('eloquent-viewable.models.view.table_name') ?: 'views';
     }
 
     /**
